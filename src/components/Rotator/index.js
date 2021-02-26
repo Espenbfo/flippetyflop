@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames"
 import styles from "./rotator.module.css"
 
-const Rotator = ({flippety, floppety}) => {
+const Rotator = ({flippety, floppety, width, height}) => {
     const [toggler, setToggler] = useState(false)
     const [rotate, setRotate] = useState(false)
     let flippetyDict = {};
@@ -12,6 +12,7 @@ const Rotator = ({flippety, floppety}) => {
     flippetyDict[styles.displayNone] = toggler;
     floppetyDict[styles.displayNone] = !toggler;
     rotateDict[styles.rotator] = rotate;
+    rotateDict[styles.rotatorContainer] = true;
 
     let flippetyClassnames = classNames(styles.flippety,  flippetyDict);
     let floppetyClassnames = classNames(styles.floppety,  floppetyDict);
@@ -27,7 +28,7 @@ const Rotator = ({flippety, floppety}) => {
         setToggler(!toggler)
     }
     return (
-        <div className={rotateClassnames} onClick={onClickRotate}>
+        <div style={{width: width, height: height}} className={rotateClassnames} onClick={onClickRotate}>
             <div className={flippetyClassnames}>{flippety}</div>
             <div className={floppetyClassnames}>{floppety}</div>
         </div>
